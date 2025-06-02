@@ -37,7 +37,7 @@ if __name__ == "__main__":
     # print(ans)
     # ans.backward(gradient=np.ones_like(ans.data))
     # print(f"x.grad: {x.grad} \ny.grad: {y.grad} \nz.grad: {z.grad}")
-    x = Node([1.0], requires_grad=True)  # Initialize x as a Node with requires_grad=True
+    x = Node(1.0, requires_grad=True)  # Initialize x as a Node with requires_grad=True
     y = train(x, lr=0.001)
     print(f"Final value of x: {x.data}, Final loss: {y.data}, Gradient: {x.grad}")
     # Expected output: Final value of x close to the minimum point of the function

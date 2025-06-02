@@ -34,7 +34,7 @@ class Node:
     @autocast_to_node
     def __add__(a: 'Node', b: 'Node') -> 'Node':
         c = Node(a.data + b.data)
-        if c.grad_fn.exists_grad():
+        if a.requires_grad or b.requires_grad:
             c.grad_fn = AddFunc(a, b)
             c.requires_grad = True
         return c
@@ -46,7 +46,7 @@ class Node:
     @autocast_to_node
     def __sub__(a: 'Node', b: 'Node') -> 'Node':
         c = Node(a.data - b.data)
-        if c.grad_fn.exists_grad():
+        if a.requires_grad or b.requires_grad:
             c.grad_fn = SubFunc(a, b)
             c.requires_grad = True
         return c
@@ -58,7 +58,7 @@ class Node:
     @autocast_to_node
     def __mul__(a: 'Node', b: 'Node') -> 'Node':
         c = Node(a.data * b.data)
-        if c.grad_fn.exists_grad():
+        if a.requires_grad or b.requires_grad:
             c.grad_fn = MulFunc(a, b)
             c.requires_grad = True
         return c
@@ -70,7 +70,7 @@ class Node:
     @autocast_to_node
     def __matmul__(a: 'Node', b: 'Node') -> 'Node':
         c = Node(a.data @ b.data)
-        if c.grad_fn.exists_grad():
+        if a.requires_grad or b.requires_grad:
             c.grad_fn = MatMulFunc(a, b)
             c.requires_grad = True
         return c
