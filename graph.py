@@ -10,7 +10,6 @@
 # https://docs.pytorch.org/docs/stable/generated/torch.matmul.html
 # https://peps.python.org/pep-0465/
 
-from typing import Tuple
 import numpy as np
 from function import *
 
