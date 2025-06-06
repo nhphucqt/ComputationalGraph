@@ -3,12 +3,12 @@ import numpy as np
 
 class GradFunc:
     def __init__(self):
-        self.nodes: List['Node'] = []
+        self.nodes = []
     
-    def push(self, node: 'Node') -> None:
+    def push(self, node) -> None:
         self.nodes.append(node)
 
-    def items(self) -> List['Node']:
+    def items(self) -> List:
         return self.nodes
     
     def exists_grad(self) -> bool:
@@ -38,7 +38,7 @@ class GradFunc:
         return wrapper
     
 class AddFunc(GradFunc):
-    def __init__(self, x: 'Node', y: 'Node'):
+    def __init__(self, x, y):
         super().__init__()
         self.push(x)
         self.push(y)
@@ -48,7 +48,7 @@ class AddFunc(GradFunc):
         return [gradient, gradient]
 
 class SubFunc(GradFunc):
-    def __init__(self, x: 'Node', y: 'Node'):
+    def __init__(self, x, y):
         super().__init__()
         self.push(x)
         self.push(y)
@@ -58,7 +58,7 @@ class SubFunc(GradFunc):
         return [gradient, -gradient]
     
 class MatMulFunc(GradFunc):
-    def __init__(self, x: 'Node', y: 'Node'):
+    def __init__(self, x, y):
         super().__init__()
         self.push(x)
         self.push(y)
@@ -72,7 +72,7 @@ class MatMulFunc(GradFunc):
         ]
 
 class MulFunc(GradFunc):
-    def __init__(self, x: 'Node', y: 'Node'):
+    def __init__(self, x, y):
         super().__init__()
         self.push(x)
         self.push(y)

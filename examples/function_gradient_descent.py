@@ -2,7 +2,9 @@ from typing import Tuple
 import numpy as np
 from graph import Node
 
-def loss_fn(x: Node) -> Node:
+def loss_fn(x):
+    # Derivative of the function 7*x^2 + 3*x + 2 is 14*x + 3
+    # Local minimum is at x = -3/14
     return 7*x*x + 3*x + 2
 
 def train_step(x: Node, lr: float) -> Tuple[Node, Node]:
@@ -14,31 +16,19 @@ def train_step(x: Node, lr: float) -> Tuple[Node, Node]:
     return y, x, lr * grad
 
 def train(x: Node, lr: float, eps: float = 1e-6) -> Node:
+    i = 0
     while True:
+        i += 1
         y, x, move_step = train_step(x, lr)
-        print(x.data)
+        print(f"Step {i}:", x.data)
         if abs(move_step) < eps:
             break
     return y
 
 if __name__ == "__main__":
-    x = Node([
-        [1.0, 2.0],
-        [3.0, 4.0],
-    ], requires_grad=True)
-    y = Node([
-        [1.5],
-        [3.2],
-    ], requires_grad=True)
-    # z = Node([
-    #     [1.0, 2.0],
-    # ], requires_grad=True)
-    ans = x @ y
-    print(ans)
-    ans.backward(gradient=np.ones_like(ans.data))
-    print(f"x.grad: {x.grad} \ny.grad: {y.grad}")
-    # x = Node(1.0, requires_grad=True)  # Initialize x as a Node with requires_grad=True
-    # y = train(x, lr=0.001)
-    # print(f"Final value of x: {x.data}, Final loss: {y.data}, Gradient: {x.grad}")
+    x = Node(1.0, requires_grad=True)  # Initialize x as a Node with requires_grad=True
+    y = train(x, lr=0.001, eps=1e-12)
+    print(f"Final value of x: {x.data}, Final loss: {y.data}")
+    print(f"Expected value of x: {-3/14}, Expected loss: {loss_fn(-3/14)}")
     # Expected output: Final value of x close to the minimum point of the function
     # and the gradient should be close to zero.
