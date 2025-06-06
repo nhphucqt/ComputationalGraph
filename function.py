@@ -18,20 +18,24 @@ class GradFunc:
         raise NotImplementedError("This method should be overridden by subclasses.")
 
     def _reshape_gradient(self, gradient: np.ndarray, shape: Tuple[int]) -> np.ndarray:
-        # print(f"Reshaping gradient from {gradient.shape} to {shape}")
         if gradient.shape == shape:
             return gradient
-        while len(gradient.shape) != len(shape):
-            if gradient.shape[-1] == 1:
-                gradient = np.squeeze(gradient, axis=-1)
-            elif gradient.shape[0] == 1:
-                gradient = np.squeeze(gradient, axis=0)
-            else:
-                raise ValueError("Cannot reshape gradient to match the shape of the node.")
+        while len(gradient.shape) > len(shape):
+            gradient = gradient.sum(axis=0)
         for i, dim in enumerate(shape):
             if dim == 1:
                 gradient = np.sum(gradient, axis=i, keepdims=True)
-        return gradient.reshape(shape)
+        return gradient
+    
+    @staticmethod
+    def reshape_decorator(backward_func):
+        def wrapper(self, gradient, *args, **kwargs):
+            grads = backward_func(self, gradient, *args, **kwargs)
+            reshaped_grads = []
+            for node, grad in zip(self.items(), grads):
+                reshaped_grads.append(self._reshape_gradient(grad, node.data.shape))
+            return reshaped_grads
+        return wrapper
     
 class AddFunc(GradFunc):
     def __init__(self, x: 'Node', y: 'Node'):
@@ -39,11 +43,9 @@ class AddFunc(GradFunc):
         self.push(x)
         self.push(y)
 
+    @GradFunc.reshape_decorator
     def backward(self, gradient: np.ndarray) -> List[any]:
-        x, y = self.items()
-        grad_x = self._reshape_gradient(gradient, x.data.shape)
-        grad_y = self._reshape_gradient(gradient, y.data.shape)
-        return [grad_x, grad_y]
+        return [gradient, gradient]
 
 class SubFunc(GradFunc):
     def __init__(self, x: 'Node', y: 'Node'):
@@ -51,11 +53,9 @@ class SubFunc(GradFunc):
         self.push(x)
         self.push(y)
 
+    @GradFunc.reshape_decorator
     def backward(self, gradient) -> List[any]:
-        x, y = self.items()
-        grad_x = self._reshape_gradient(gradient, x.data.shape)
-        grad_y = self._reshape_gradient(-gradient, y.data.shape)
-        return [grad_x, grad_y]
+        return [gradient, -gradient]
     
 class MatMulFunc(GradFunc):
     def __init__(self, x: 'Node', y: 'Node'):
@@ -63,11 +63,13 @@ class MatMulFunc(GradFunc):
         self.push(x)
         self.push(y)
 
+    @GradFunc.reshape_decorator
     def backward(self, gradient: np.ndarray) -> List[any]:
         x, y = self.items()
-        grad_x = self._reshape_gradient(gradient @ np.moveaxis(y.data, -1, 0), x.data.shape)
-        grad_y = self._reshape_gradient(np.moveaxis(x.data, -1, 0) @ gradient, y.data.shape)
-        return [grad_x, grad_y]
+        return [
+            gradient @ np.moveaxis(y.data, -1, 0), 
+            np.moveaxis(x.data, -1, 0) @ gradient
+        ]
 
 class MulFunc(GradFunc):
     def __init__(self, x: 'Node', y: 'Node'):
@@ -75,8 +77,7 @@ class MulFunc(GradFunc):
         self.push(x)
         self.push(y)
 
+    @GradFunc.reshape_decorator
     def backward(self, gradient) -> List[any]:
         x, y = self.items()
-        grad_x = self._reshape_gradient(gradient * y.data, x.data.shape)
-        grad_y = self._reshape_gradient(gradient * x.data, y.data.shape)
-        return [grad_x, grad_y]
+        return [gradient * y.data, gradient * x.data]

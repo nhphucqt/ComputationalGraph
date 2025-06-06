@@ -2,9 +2,10 @@
 # https://github.com/lucasdelimanogueira/PyNorch/blob/main/norch/tensor.py
 
 # Matrix Calculus
-# https://explained.ai/matrix-calculus/
 # https://cs231n.stanford.edu/vecDerivs.pdf
 # https://atmos.washington.edu/~dennis/MatrixCalculus.pdf
+# https://explained.ai/matrix-calculus/
+# https://arxiv.org/pdf/2501.14787
 
 # Matrix Multiplication
 # https://docs.pytorch.org/docs/stable/generated/torch.matmul.html
