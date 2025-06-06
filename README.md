@@ -42,10 +42,10 @@ A minimal deep learning framework that implements a computational graph with aut
 
 ### Matrix Multiplication
 
-- [PyTorch Documentation: torch.matmul](https://docs.pytorch.org/docs/stable/generated/torch.matmul.html):  
+- [PyTorch Documentation: torch.matmul](https://docs.pytorch.org/docs/stable/generated/torch.matmul.html)  
     Official documentation for matrix multiplication in PyTorch, describing broadcasting and operation semantics.
 
-- [PEP 465: A dedicated infix operator for matrix multiplication](https://peps.python.org/pep-0465/):  
+- [PEP 465: A dedicated infix operator for matrix multiplication](https://peps.python.org/pep-0465/)  
     Python Enhancement Proposal introducing the `@` operator for matrix multiplication, relevant for implementing intuitive APIs.
 
 ---
