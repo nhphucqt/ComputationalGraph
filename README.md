@@ -19,25 +19,26 @@ A minimal deep learning framework that implements a computational graph with aut
 
 ### Core Concepts
 
-- [Recreating PyTorch from Scratch with GPU Support and Automatic Differentiation](https://medium.com/data-science/recreating-pytorch-from-scratch-with-gpu-support-and-automatic-differentiation-8f565122a3cc):  
+- [Recreating PyTorch from Scratch with GPU Support and Automatic Differentiation](https://medium.com/data-science/recreating-pytorch-from-scratch-with-gpu-support-and-automatic-differentiation-8f565122a3cc)  
     A comprehensive guide on building a PyTorch-like framework, covering computational graphs, autograd, and GPU support.
 
-- [PyNorch Tensor Implementation](https://github.com/lucasdelimanogueira/PyNorch/blob/main/norch/tensor.py):  
+- [PyNorch Tensor Implementation](https://github.com/lucasdelimanogueira/PyNorch/blob/main/norch/tensor.py)  
     An open-source project that implements a minimal PyTorch-like tensor with autograd, serving as a reference for design and implementation.
 
 ### Matrix Calculus
 
-- [CS231n: Vector Calculus Review and Reference](https://cs231n.stanford.edu/vecDerivs.pdf):  
+- [CS231n: Vector Calculus Review and Reference](https://cs231n.stanford.edu/vecDerivs.pdf)  
     A concise summary of vector and matrix calculus, essential for understanding backpropagation and gradient computation.
 
-- [Matrix Calculus for Deep Learning](https://atmos.washington.edu/~dennis/MatrixCalculus.pdf):  
-    A detailed document explaining matrix calculus rules, useful for implementing gradients in computational graphs.
+- [Matrix Calculus for Deep Learning](https://atmos.washington.edu/~dennis/MatrixCalculus.pdf)  
+    A concise document explaining matrix calculus rules, useful for implementing gradients in computational graphs.
 
-- [Explained.ai: Matrix Calculus](https://explained.ai/matrix-calculus/):  
+- [Explained.ai: Matrix Calculus](https://explained.ai/matrix-calculus/)  
     An intuitive explanation of matrix calculus concepts, with visualizations and practical examples.
 
-- [A Matrix Calculus Approach to Backpropagation](https://arxiv.org/pdf/2501.14787):  
-    A research paper detailing the mathematical foundations of backpropagation using matrix calculus.
+- [Matrix Calculus
+(for Machine Learning and Beyond)](https://arxiv.org/pdf/2501.14787)  
+    A comprehensive and modern treatment of calculus involving matrices, designed to bridge the gap between traditional calculus and the advanced differentiation needed for machine learning, optimization, and scientific computing.
 
 ### Matrix Multiplication
 
