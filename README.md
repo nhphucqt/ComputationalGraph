@@ -13,7 +13,7 @@ A minimal deep learning framework that implements a computational graph with aut
 
 1. Clone the repository.
 2. Install dependencies (e.g. NumPy) in `requirements.txt`.
-3. Explore the `Node` in Graph, `Dataset`, and `DataLoader` modules in `examples`. For example, `python -m matrix_operations`.
+3. Explore the `Node` in Graph, `Dataset`, and `DataLoader` modules in `examples`. For example, `python -m examples.matrix_operations`.
 
 ## References
 
