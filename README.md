@@ -7,6 +7,9 @@ A minimal deep learning framework that implements a computational graph with aut
 - **Tensor-like API:** Core data structure wraps NumPy arrays, supporting basic tensor operations and autograd.
 - **Automatic Differentiation:** Enables gradient computation for building and training neural networks.
 - **Dataset & DataLoader:** Utilities for loading and batching data, similar to PyTorch's `Dataset` and `DataLoader`.
+- **Matrix Operations:** Implements essential matrix operations like multiplication, addition, and broadcasting.
+- **Backpropagation:** Supports backpropagation through computational graphs, allowing for efficient gradient updates.
+- **Neural Network Support:** Basic neural network components (e.g., layers, activation functions) are included for building models.
 - **Extensible Design:** Future features (e.g., more operations, GPU support) are planned for further PyTorch-like functionality.
 
 ## Getting Started
