@@ -1,3 +1,4 @@
+import numpy as np
 from data.dataset import Dataset
 
 class DataLoader:
@@ -14,7 +15,10 @@ class DataLoader:
         for start in range(0, len(self.dataset), self.batch_size):
             end = min(start + self.batch_size, len(self.dataset))
             batch_indices = self.indices[start:end]
-            yield [self.dataset[i] for i in batch_indices]
+            features, labels = zip(*[self.dataset[i] for i in batch_indices])
+            features = np.array(features)
+            labels = np.array(labels)
+            yield features, labels
 
     def __len__(self):
         return (len(self.dataset) + self.batch_size - 1) // self.batch_size
