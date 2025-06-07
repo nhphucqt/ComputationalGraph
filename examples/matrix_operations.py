@@ -1,5 +1,5 @@
 import numpy as np
-from graph import Node  
+from cgraph.node import Node  
 
 x = Node([
     [1.0, 2.0],

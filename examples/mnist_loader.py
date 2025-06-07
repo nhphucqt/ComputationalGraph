@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from data.datasets.mnist import MNIST
-from data.loader import DataLoader
+from cgraph.data.datasets.mnist import MNIST
+from cgraph.data.loader import DataLoader
 
 mnist_dataset = MNIST('train')
 mnist_loader = DataLoader(mnist_dataset, batch_size=15, shuffle=True)

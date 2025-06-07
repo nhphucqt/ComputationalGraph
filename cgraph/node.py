@@ -12,7 +12,7 @@
 # https://peps.python.org/pep-0465/
 
 import numpy as np
-from autograd.function import *
+from cgraph.autograd.functions import *
 
 def autocast_to_node(func):
     def wrapper(self, other):

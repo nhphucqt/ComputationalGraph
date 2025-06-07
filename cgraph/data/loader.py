@@ -1,5 +1,5 @@
 import numpy as np
-from data.dataset import Dataset
+from cgraph.data.dataset import Dataset
 
 class DataLoader:
     def __init__(self, dataset: Dataset, batch_size: int = 1, shuffle: bool = False):

@@ -4,9 +4,9 @@ References:
 - Code: https://www.kaggle.com/code/hojjatk/read-mnist-dataset
 """
 
-from ..dataset import Dataset
+from cgraph.data.dataset import Dataset
 from array import array
-from configurations import CONFIG_CACHED_DATASET_DIR
+from cgraph.configurations import CONFIG_CACHED_DATASET_DIR
 from pathlib import Path
 import numpy as np
 import requests

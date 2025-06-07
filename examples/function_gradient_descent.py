@@ -1,6 +1,6 @@
 from typing import Tuple
 import numpy as np
-from graph import Node
+from cgraph.node import Node
 
 def loss_fn(x):
     # Derivative of the function 7*x^2 + 3*x + 2 is 14*x + 3
